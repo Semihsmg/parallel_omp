@@ -1,10 +1,7 @@
 /*
  ============================================================================
  Name        : aa.c
- Author      : bellideil
- Version     : Nerden bileyim?!?
- Copyright   : Your copyright notice
- Description : Hello OpenMP World in C
+ Description : Parallel Grammer Check
  ============================================================================
  */
 #include <omp.h>
