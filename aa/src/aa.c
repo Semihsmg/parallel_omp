@@ -7,61 +7,43 @@
 #include <omp.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #define MAX_LINE_NUMBER 1000
 #define MAX_WORD_NUMBER 1000
 
 int main(int argc, char *argv[]) {
-
-	char *fileDir = "D:\\text.txt";
-	char *resultDir = "D:\\result.txt";
+	clock_t begin = clock();
+	char *fileDir = "C:\\Users\\ogulcan\\Paralel\\text.txt";
+	char *resultDir = "C:\\Users\\ogulcan\\Paralel\\result.txt";
 
 	FILE *txtFile = fopen(fileDir, "r"); // open as read only
 	FILE *txtResult = fopen(resultDir, "w"); // open as read and write
 
-	if (txtFile != NULL) {
-		printf("File directory found: %s\n", fileDir);
-		int i = 0;
-		char words[MAX_WORD_NUMBER][MAX_LINE_NUMBER];
+	printf("File directory found: %s\n", fileDir);
+	int i = 0;
+	char words[MAX_LINE_NUMBER][MAX_WORD_NUMBER];
+	char * prt;
 
-		while (i < MAX_WORD_NUMBER && !feof(txtFile)) {
-			fgets(words[i], MAX_LINE_NUMBER, txtFile);
-			fputs(words[i], txtResult);
-			i++;
+	while (i < MAX_LINE_NUMBER && !feof(txtFile)) {
+
+		fgets(words[i], MAX_WORD_NUMBER, txtFile);
+		prt = strtok(&words[i], "' ','\n'");
+		while (prt != NULL) {
+			printf("%s\n", prt);
+			fputs(prt, txtResult);
+			putc('\n', txtResult);
+			prt = strtok(NULL, "' ','\n'");
 		}
-		printf("File process done!");
-
-	} else {
-		printf("%s not found!\n", fileDir);
+		i++;
 	}
 
 	fclose(txtFile);
 	fclose(txtResult);
 
-	printf("\n\n");
+	clock_t end = clock();
+	double time_spent = (double) (end - begin) / CLOCKS_PER_SEC;
+	printf("\n %f = timespent", time_spent);
 
-	int numThreads, tid, i;
-// This creates a team of threads; each thread has own copy of variables
-#pragma omp parallel private(numThreads, tid) shared (i)
-	{
-/*
-		tid = omp_get_thread_num();
-		printf("Hello from thread number %d\n", tid);
-
-		// The following is executed by the master thread only (tid=0)
-		if (tid == 0) {
-			numThreads = omp_get_num_threads();
-			printf("Number of threads is %d\n", numThreads);
-		}
-*/
-#pragma omp for
-		// for loop executed with available number of threads.
-		for (i = 0; i < 12; i++) {
-			tid = omp_get_thread_num();
-			printf("Hi!\n");
-			printf("Hello from thread number %d\n", tid);
-		}
-	}
 	return 0;
 }
-
