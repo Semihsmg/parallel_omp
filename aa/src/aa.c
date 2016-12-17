@@ -42,18 +42,18 @@ int main(int argc, char *argv[]) {
 		//printf("Data %d:%s\n", i, data[i]);
 	}
 
-	int j, k, r = 0, tid, totaltotalThreadNum;
+	int j, k, r = 0, tid, totalThreadNum;
 
-#pragma omp parallel private(i,j,k,r,tid,totaltotalThreadNum)
+#pragma omp parallel private(i,j,k,r,tid,totalThreadNum)
 	{
 		// Get thread ID
 		tid = omp_get_thread_num();
 		//Total thread number
-		totaltotalThreadNum = omp_get_num_threads();
+		totalThreadNum = omp_get_num_threads();
 
 		// Divide MAX_LINE to total number of threads
 		// To find how many lines assigned to each thread
-		int dist = MAX_LINE / totaltotalThreadNum;
+		int dist = MAX_LINE / totalThreadNum;
 
 		// start and end gives range to each thread for "for loop"
 		int start = (tid * dist);
@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
 		// only master thread prints this section
 		if (tid == 0) {
 			printf("--------------------------\n");
-			printf("Total thread: %d\n", totaltotalThreadNum);
+			printf("Total thread: %d\n", totalThreadNum);
 			printf("Distance: %d\n", dist);
 			printf("--------------------------\n");
 		}
