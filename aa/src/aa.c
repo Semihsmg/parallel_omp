@@ -72,14 +72,14 @@ int main(int argc, char *argv[]) {
 			// dictionary length
 			for (k = 0; k < 3; k++) {
 				for (j = 0; j < 8; j++) {
-					if (data[start][j] == dictionary[k][j]) {
+					if (data[start + i][j] == dictionary[k][j]) {
 						r++;
 					}
 					if (r > 3) {
-						strcpy(result[start], dictionary[k]);
+						strcpy(result[start + i], dictionary[k]);
 
-					} else if (strlen(result[start]) < 5) {
-						strcpy(result[start], data[start]);
+					} else if (strlen(result[start + i]) < 5) {
+						strcpy(result[start + i], data[start + i]);
 					}
 				}
 				r = 0;
