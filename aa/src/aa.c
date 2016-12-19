@@ -10,7 +10,7 @@
 #include <string.h>
 #include <time.h>
 
-#define MAX_LINE 120000
+#define MAX_LINE 130000
 
 int main(int argc, char *argv[]) {
 
@@ -35,11 +35,16 @@ int main(int argc, char *argv[]) {
 		} else if (r == 2) {
 			strcpy(data[i], "ogulcan");
 		} else if (r == 3) {
-			strcpy(data[i], "ogulcand");
+			strcpy(data[i], "ogulcad");
 		} else {
 			strcpy(data[i], "omeree");
 		}
-		//printf("Data %d:%s\n", i, data[i]);
+
+	}
+
+	//Print input data
+	for (i = 0; i < 20; i++) {
+		printf("Data %d: %s\n", i, data[i]);
 	}
 
 	int j, k, r = 0, tid, totalThreadNum;
@@ -55,11 +60,11 @@ int main(int argc, char *argv[]) {
 		// To find how many lines assigned to each thread
 		int dist = MAX_LINE / totalThreadNum;
 
-		// start and end gives range to each thread for "for loop"
+		// Start and end gives range to each thread for "for loop"
 		int start = (tid * dist);
 		int end = (dist * tid) + dist;
 
-		// only master thread prints this section
+		// Only master thread prints this section
 		if (tid == 0) {
 			printf("--------------------------\n");
 			printf("Total thread: %d\n", totalThreadNum);
@@ -69,7 +74,7 @@ int main(int argc, char *argv[]) {
 
 		// Each thread covers its distance (e.g. 0 -> 20.000)
 		for (i = 0; start + i < end; i++) {
-			// dictionary length
+			// Dictionary length
 			for (k = 0; k < 3; k++) {
 				for (j = 0; j < 8; j++) {
 					if (data[start + i][j] == dictionary[k][j]) {
@@ -89,17 +94,18 @@ int main(int argc, char *argv[]) {
 		// Prints time spend value for each thread.
 		printf("--------------------------\n");
 		clock_t endTime = clock();
+
 		double time_spent = (double) (endTime - begin) / CLOCKS_PER_SEC;
 		printf("Thread ID: %d\n", tid);
 		printf("Time spend: %f\n", time_spent);
 		printf("--------------------------\n");
-
 	}
-/*
-	for (i = 0; i < MAX_LINE; i++) {
+#pragma omp barrier//Barrier for each thread to finish
+
+	//Print corrected results
+	for (i = 0; i < 20; i++) {
 		printf("result %d = %s\n", i, result[i]);
 	}
-*/
+
 	return 0;
 }
-
