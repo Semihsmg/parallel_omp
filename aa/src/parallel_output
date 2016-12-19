@@ -1,0 +1,60 @@
+Data 0: semihd
+Data 1: semihd
+Data 2: ogulcan
+Data 3: ogulcad
+Data 4: semih
+Data 5: omeree
+Data 6: ogulcan
+Data 7: semih
+Data 8: ogulcan
+Data 9: ogulcan
+Data 10: semih
+Data 11: ogulcad
+Data 12: semih
+Data 13: ogulcan
+Data 14: semih
+Data 15: semihd
+Data 16: ogulcan
+Data 17: ogulcan
+Data 18: omeree
+Data 19: omeree
+--------------------------
+Total thread: 4
+Distance: 32500
+--------------------------
+--------------------------
+Thread ID: 0
+Time spend: 0.018000
+--------------------------
+--------------------------
+Thread ID: 1
+Time spend: 0.019000
+--------------------------
+--------------------------
+Thread ID: 2
+Time spend: 0.019000
+--------------------------
+--------------------------
+Thread ID: 3
+Time spend: 0.028000
+--------------------------
+result 0 = semih
+result 1 = semih
+result 2 = ogulcan
+result 3 = ogulcan
+result 4 = semih
+result 5 = omer
+result 6 = ogulcan
+result 7 = semih
+result 8 = ogulcan
+result 9 = ogulcan
+result 10 = semih
+result 11 = ogulcan
+result 12 = semih
+result 13 = ogulcan
+result 14 = semih
+result 15 = semih
+result 16 = ogulcan
+result 17 = ogulcan
+result 18 = omer
+result 19 = omer
